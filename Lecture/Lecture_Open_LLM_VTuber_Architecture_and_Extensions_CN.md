@@ -262,6 +262,61 @@ uv sync
 uv run python run_server.py
 ```
 
+### Windows 环境
+```
+  Configuration Files to Modify:
+
+  1. Main Configuration File
+
+  - File: config_templates/conf.default.yaml → copy to root as conf.yaml
+  - Key sections to configure:
+    - Lines 61, 129-137: Ollama LLM configuration
+    - Lines 61: Set llm_provider: 'ollama_llm'
+    - Lines 129-137: Configure Ollama settings (base_url, model, temperature)
+
+  2. Python Environment Files
+
+  - File: requirements.txt (dependencies list)
+  - File: pyproject.toml (project configuration)
+
+  How to Configure and Run Successfully:
+
+  1. Install Ollama on Windows
+
+  Download and install Ollama from https://ollama.com/download
+  Pull a model (e.g., qwen2.5)
+  ollama pull qwen2.5:latest
+
+  2. Python Environment Setup (Windows)
+
+  Install Python 3.11+ 
+  Create virtual environment
+  python -m venv venv
+  venv\Scripts\activate
+
+  Install dependencies
+  pip install -r requirements.txt
+
+  3. Configure Ollama in conf.yaml
+
+  Copy conf.default.yaml to conf.yaml, then edit:
+  llm_provider: 'ollama_llm'
+
+  ollama_llm:
+    base_url: 'http://localhost:11434/v1'  # Default Ollama API URL
+    model: 'qwen2.5:latest'                # Your downloaded model
+    temperature: 1.0
+    keep_alive: -1                         # Keep model loaded
+    unload_at_exit: True
+
+  4. Run the Project
+
+  python run_server.py
+  Access at http://localhost:12393
+
+  Key Files: conf.yaml (main config), requirements.txt (Python deps), and ensure Ollama is running
+  on port 11434.
+ ``` 
 ### 步骤 5：访问应用程序
 
 运行后，在以下地址访问应用程序：
@@ -3243,15 +3298,4 @@ Open-LLM-VTuber项目为构建复杂的个人虚拟朋友系统提供了出色�
 *本讲座提供了将Open-LLM-VTuber扩展为高级个人虚拟朋友系统的全面指南。通过遵循这些原则和实现策略，开发者可以创建真正引人入胜、个性化且负责任的AI伴侣体验。*
 // ... existing code ...
 ```
-
-翻译已完成！我已经将英文讲座文件的剩余内容（从第1339行到第1886行）完整翻译成中文，并添加到了中文版本文件中。翻译内容包括：
-
-1. **上下文响应生成系统**的完整实现
-2. **第三阶段：高级个性化功能**，包括动态个性进化和主动互动系统
-3. **实施路线图**，包含8周开发计划和技术实施步骤
-4. **测试策略**，涵盖单元测试、集成测试和用户体验测试
-5. **最佳实践与注意事项**，包括隐私保护、关系边界管理、性能优化、可扩展性架构和伦理考虑
-6. **结论**和**附加资源**部分
-
-整个翻译保持了原文的技术准确性、代码示例的完整性，并适应了中文表达习惯，确保中文读者能够完全理解和实施这些高级功能。
         
